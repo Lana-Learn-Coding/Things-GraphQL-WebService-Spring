@@ -1,0 +1,20 @@
+type Thing {
+    id: ID!
+    name: String
+    description: String
+    generic: String
+}
+
+input ThingInput {
+    name: String!
+    description: String
+}
+
+type Query {
+    Things: [Thing]
+}
+
+type Mutation {
+    createThing(thing: ThingInput) : Thing!
+    #    deleteThing(id: ID!) : Boolean
+}

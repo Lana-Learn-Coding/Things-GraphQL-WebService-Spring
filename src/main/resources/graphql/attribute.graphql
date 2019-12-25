@@ -1,0 +1,19 @@
+type Attribute {
+    id: ID!
+    name: String
+    description: String
+}
+
+input AttributeInput {
+    name: String!
+    description: String
+}
+
+extend type Query {
+    Attributes: [Attribute]
+}
+
+extend type Mutation {
+    createAttribute(attribute: AttributeInput): Attribute!
+    #    deleteAttribute(id: ID!) : Boolean
+}
