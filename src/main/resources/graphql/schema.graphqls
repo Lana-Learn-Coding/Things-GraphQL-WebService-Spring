@@ -1,0 +1,10 @@
+type Thing {
+    id: ID!
+    name: String!
+    description: String
+    generic: String
+}
+
+type Query {
+    allThings: [Thing]
+}
