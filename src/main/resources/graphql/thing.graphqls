@@ -3,15 +3,17 @@ type Thing {
     name: String
     description: String
     generic: String
+    attribute: Attribute
 }
 
 input ThingInput {
     name: String!
     description: String
+    attribute: ID
 }
 
 type Query {
-    Things: [Thing]
+    things: [Thing]
 }
 
 type Mutation {

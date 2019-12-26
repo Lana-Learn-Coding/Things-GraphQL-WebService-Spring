@@ -2,6 +2,7 @@ type Attribute {
     id: ID!
     name: String
     description: String
+    things: [Thing]
 }
 
 input AttributeInput {
@@ -10,7 +11,7 @@ input AttributeInput {
 }
 
 extend type Query {
-    Attributes: [Attribute]
+    attributes: [Attribute]
 }
 
 extend type Mutation {

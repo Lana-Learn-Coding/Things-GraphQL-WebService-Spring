@@ -22,6 +22,11 @@ public class Attribute {
     private String name;
     private String description;
 
+    public Attribute(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     @OneToMany(mappedBy = "attribute")
     private List<Thing> things;
 }
