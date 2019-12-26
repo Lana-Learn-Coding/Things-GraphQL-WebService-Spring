@@ -8,6 +8,8 @@ import lana.thingwebservice.thing.ThingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class Mutation implements GraphQLMutationResolver {
     private ThingRepo thingRepo;
@@ -23,7 +25,23 @@ public class Mutation implements GraphQLMutationResolver {
         return thingRepo.save(thing);
     }
 
+    public Boolean deleteThing(Integer thingId) {
+        Optional<Thing> existed = thingRepo.findById(thingId);
+        return existed.map((thing) -> {
+            thingRepo.delete(thing);
+            return true;
+        }).orElse(false);
+    }
+
     public Attribute createAttribute(Attribute attribute) {
         return attributeRepo.save(attribute);
+    }
+
+    public Boolean deleteAttribute(Integer attributeId) {
+        Optional<Attribute> existed = attributeRepo.findById(attributeId);
+        return existed.map((attribute) -> {
+            attributeRepo.delete(attribute);
+            return true;
+        }).orElse(false);
     }
 }

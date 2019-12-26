@@ -16,5 +16,5 @@ extend type Query {
 
 extend type Mutation {
     createAttribute(attribute: AttributeInput): Attribute!
-    #    deleteAttribute(id: ID!) : Boolean
+    deleteAttribute(id: ID!) : Boolean
 }

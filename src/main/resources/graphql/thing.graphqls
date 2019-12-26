@@ -18,5 +18,5 @@ type Query {
 
 type Mutation {
     createThing(thing: ThingInput) : Thing!
-    #    deleteThing(id: ID!) : Boolean
+    deleteThing(id: ID!) : Boolean
 }
