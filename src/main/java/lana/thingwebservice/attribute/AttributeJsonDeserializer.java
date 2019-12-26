@@ -12,10 +12,20 @@ import java.io.IOException;
 
 @Component
 public class AttributeJsonDeserializer extends StdDeserializer<Attribute> {
-    private AttributeRepo attributeRepo;
+
+    /*
+     * Spring dependency injection happens before Jackson initialises the serializer
+     * So we make this field static and 2 constructors
+     *
+     * One for Spring which sets the dependency as a static field for the class
+     * One that is used by the Jackson initialisation later
+     *
+     * This way fix the null @Autowired problem
+     */
+    private static AttributeRepo attributeRepo;
 
     public AttributeJsonDeserializer() {
-        this(null);
+        this((Class<?>) null);
     }
 
     public AttributeJsonDeserializer(Class<?> vc) {
@@ -23,8 +33,9 @@ public class AttributeJsonDeserializer extends StdDeserializer<Attribute> {
     }
 
     @Autowired
-    public void setAttributeRepo(AttributeRepo attributeRepo) {
-        this.attributeRepo = attributeRepo;
+    public AttributeJsonDeserializer(AttributeRepo attributeRepo) {
+        this((Class<?>) null);
+        AttributeJsonDeserializer.attributeRepo = attributeRepo;
     }
 
     @Override
